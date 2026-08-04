@@ -11,13 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileScreen(),
+      home: LoginScreen(),
     );
   }
 }
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
 
       body: Center(
         child: Container(
-          width: 320,
+          width: 330,
           padding: const EdgeInsets.all(20),
 
           decoration: BoxDecoration(
@@ -43,74 +43,112 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircleAvatar(
-                radius: 70,
+              // Profile Image
+              const CircleAvatar(
+                radius: 50,
                 backgroundImage: NetworkImage(
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSceMNeudxCZWNAj7Erryd-LtKMdP9_XctpCU1prpp16A&s",
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
 
               const Text(
-                "Maham",
+                "Welcome Back!",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
 
-              const SizedBox(height: 5),
+              const SizedBox(height: 8),
 
               const Text(
-                "Flutter Developer",
+                "Login to continue",
                 style: TextStyle(
-                  fontSize: 18,
                   color: Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              TextField(
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.email),
+                  hintText: "Email",
+                  filled: true,
+                  fillColor: Colors.pink.shade50,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock),
+                  hintText: "Password",
+                  filled: true,
+                  fillColor: Colors.pink.shade50,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                    color: Colors.pink.shade700,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
 
               const SizedBox(height: 20),
 
-              const Divider(),
-
-              const SizedBox(height: 10),
-
-              const Row(
-                children: [
-                  Icon(Icons.email),
-                  SizedBox(width: 10),
-                  Text("Maham@gmail.com"),
-                ],
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    "LOGIN",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.camera_alt, color: Colors.pink),
-                  SizedBox(width: 10),
-                  Text("She_Cadet"),
-                ],
-              ),
-
-              SizedBox(height: 10),
-
-              Row(
-                children: [
-                  Icon(Icons.snapchat, color: Colors.yellow),
-                  SizedBox(width: 10),
-                  Text("She_cadet"),
-                ],
-              ),
-
-              const SizedBox(height: 10),
-
-              const Row(
-                children: [
-                  Icon(Icons.location_on),
-                  SizedBox(width: 10),
-                  Text("Peshawar"),
+                  const Text("Don't have an account? "),
+                  Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: Colors.pink.shade700,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -120,4 +158,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
