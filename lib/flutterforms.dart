@@ -11,19 +11,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const RegistrationPage(),
     );
   }
 }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -39,15 +39,15 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // Logo
                 Container(
-                  height: 90,
-                  width: 90,
+                  height: 85,
+                  width: 85,
                   decoration: const BoxDecoration(
                     color: Color(0xFFE3ECF7),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.lock_rounded,
-                    size: 45,
+                    Icons.person_add_alt_1,
+                    size: 42,
                     color: Color(0xFF1E3A5F),
                   ),
                 ),
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // Title
                 const Text(
-                  "Welcome Back!",
+                  "Create Account",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 28,
@@ -68,16 +68,16 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 5),
 
                 const Text(
-                  "Login to your account",
+                  "Register to get started",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black54,
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 25),
 
-                // Form Card
+                // Registration Card
                 Container(
                   padding: const EdgeInsets.all(22),
                   decoration: BoxDecoration(
@@ -93,6 +93,32 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Column(
                     children: [
+                      // Full Name
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Full Name",
+                          prefixIcon: const Icon(
+                            Icons.person_outline,
+                            color: Color(0xFF1E3A5F),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFF4F7FB),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter your name";
+                          }
+
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+
                       // Email
                       TextFormField(
                         decoration: InputDecoration(
@@ -121,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
 
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 16),
 
                       // Password
                       TextFormField(
@@ -141,11 +167,42 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter your password";
+                            return "Please enter a password";
                           }
 
                           if (value.length < 6) {
-                            return "Password must be 6 characters";
+                            return "Password must be at least 6 characters";
+                          }
+
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Confirm Password
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: "Confirm Password",
+                          prefixIcon: const Icon(
+                            Icons.lock_reset_outlined,
+                            color: Color(0xFF1E3A5F),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFF4F7FB),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please confirm your password";
+                          }
+
+                          if (value.length < 6) {
+                            return "Password must be at least 6 characters";
                           }
 
                           return null;
@@ -154,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 25),
 
-                      // Login Button
+                      // Register Button
                       SizedBox(
                         width: double.infinity,
                         height: 52,
@@ -164,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                    "Login successful!",
+                                    "Registration successful!",
                                   ),
                                 ),
                               );
@@ -178,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           child: const Text(
-                            "LOGIN",
+                            "REGISTER",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -193,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 20),
 
                 const Text(
-                  "Don't have an account? Sign Up",
+                  "Already have an account? Login",
                   style: TextStyle(
                     color: Color(0xFF1E3A5F),
                     fontWeight: FontWeight.w600,
