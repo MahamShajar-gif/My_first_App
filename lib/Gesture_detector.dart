@@ -24,41 +24,60 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String text = "Tap Me 😸";
+  String message = "Tap Me 😸";
+
+  void showMessage(String newMessage) {
+    setState(() {
+      message = newMessage;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Hello",
+        title: const Text(
+          "Gesture Detector",
           style: TextStyle(
             color: Color(0xFF000080),
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
       body: Center(
         child: GestureDetector(
           onTap: () {
-            setState(() {
-              text = "You Tapped Me! 😸";
-            });
+            showMessage("You Tapped Me! 👆");
           },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 15,
+          onDoubleTap: () {
+            showMessage("Double Tap! 😸😸");
+          },
+          onLongPress: () {
+            showMessage("Long Press! ✋");
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 20,
             ),
             decoration: BoxDecoration(
-              color: Color(0xFF000080),
-              borderRadius: BorderRadius.circular(10),
+              color: const Color(0xFF000080),
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 8,
+                  offset: Offset(0, 4),
+                ),
+              ],
             ),
             child: Text(
-              text,
-              style: TextStyle(
+              message,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
